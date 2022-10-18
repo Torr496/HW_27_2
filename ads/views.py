@@ -1,5 +1,5 @@
 import json
-
+from os.path import dirname, abspath
 
 from django.http import JsonResponse
 from django.utils.decorators import method_decorator
@@ -13,8 +13,9 @@ import pandas as pandas
 
 class AddInfo(View):
     def get(self, request):
-        data_ads = pandas.read_csv('D:/HW_27_2/data/ads.csv', sep=",").to_dict()
-        print(data_ads)
+        base_dir = dirname(dirname(abspath(__file__)))
+        path = base_dir.joinpath('data', 'ads.csv')
+        data_ads = pandas.read_csv(path, sep=",").to_dict()
 
         i = 0
 
@@ -33,8 +34,10 @@ class AddInfo(View):
 
 class AddInfoCat(View):
     def get(self, request):
-        data_ads = pandas.read_csv('D:/HW_27_2/data/categories.csv', sep=",").to_dict()
-        print(data_ads)
+        base_dir = dirname(dirname(abspath(__file__)))
+        path = base_dir.joinpath('data', 'categories.csv')
+        data_ads = pandas.read_csv(path, sep=",").to_dict()
+
 
         i = 0
 
